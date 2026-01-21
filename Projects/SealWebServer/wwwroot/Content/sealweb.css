@@ -89,7 +89,7 @@ a {
 }
 
 .jstree-search {
-    color:black !important;
+    color: black !important;
 }
 
 #elements-tree {
@@ -341,7 +341,7 @@ table.dataTable {
 
 /* Configuration Dialog Layout */
 #config-dialog .modal-dialog {
-    max-width: 600px;
+    width: 800px;
     margin: 30px auto;
 }
 
@@ -390,9 +390,12 @@ table.dataTable {
     width: 100%;
 }
 
+    .config-input-row span {
+        align-self: flex-start;
+    }
+
 .config-input-column {
     display: flex;
-    flex-direction: column;
     gap: 8px;
     margin-bottom: 16px;
     width: 100%;
@@ -402,8 +405,8 @@ table.dataTable {
     font-size: 14px;
     color: #666;
     font-weight: 500;
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 250px;
+    max-width: 250px;
     flex-shrink: 0;
 }
 
@@ -442,6 +445,11 @@ table.dataTable {
     width: 100% !important;
     max-width: 100% !important;
 }
+
+    #config-dialog .bootstrap-select .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+    }
 
     #config-dialog .bootstrap-select.form-control {
         padding: 0 !important;
@@ -676,7 +684,7 @@ table.dataTable {
 }
 
 /* Container width constraints */
-#config-group-detail-content,   
+#config-group-detail-content,
 #config-user-detail-content {
     width: 100%;
     box-sizing: border-box;
@@ -715,7 +723,7 @@ table.dataTable {
 /*  Profile Dialog  */
 #profile-dialog .modal-dialog,
 #folder-dialog .modal-dialog {
-    max-width: 600px;
+    width: 800px;
     margin: 30px auto;
 }
 

@@ -7,8 +7,9 @@
     table.Parameters.Add(new Parameter() { Name = "selector", Value = "table.wikitable", DisplayName = "CSS Path selector of the table", Description = "Selector of the the table" });
     table.Parameters.Add(new Parameter() { Name = "header_row", NumericValue = 0, DisplayName = "Header row", Description = "Index of the header row of the table used to name the columns. If -1, default naming is used." });
     table.Parameters.Add(new Parameter() { Name = "data_start_row", NumericValue = 1, DisplayName = "Data start row", Description = "Start row of the table for data." });
-    table.Parameters.Add(new Parameter() { Name = "numeric_cols", Value = "Population;% ofworld", DisplayName = "Numeric column names", Description = "Column names defined as numeric. Several columns can be specified if separated by semi-column (e.g. 'Amount;Quantity')." });
+    table.Parameters.Add(new Parameter() { Name = "numeric_cols", Value = "Population;% ofworld", DisplayName = "Numeric column names", Description = "Prefix of column names defined as numeric. Several columns can be specified if separated by semi-column (e.g. 'Amount;Quantity')." });
     table.Parameters.Add(new Parameter() { Name = "decimal_separator", Value = ".", DisplayName = "Decimal separator", Description = "Decimal separator for numeric columns." });
+    table.Parameters.Add(new Parameter() { Name = "thousand_separator", Value = ",", DisplayName = "Thousand separator", Description = "Thousand separator for numeric columns." });
 
     table.DefinitionScript = @"@using AngleSharp.Dom;
 @using AngleSharp;
@@ -32,23 +33,23 @@
     // Find the table element
     var docTable = document.QuerySelectorAll(selector).FirstOrDefault() as IHtmlTableElement;
 
-    metaTable.NoSQLTable = ConvertHtmlTableToDataTable(docTable, metaTable.GetNumericValue(""header_row""), metaTable.GetNumericValue(""data_start_row""), metaTable.GetValue(""numeric_cols""), metaTable.GetValue(""decimal_separator""));
+    metaTable.NoSQLTable = ConvertHtmlTableToDataTable(docTable, metaTable.GetNumericValue(""header_row""), metaTable.GetNumericValue(""data_start_row""), metaTable.GetValue(""numeric_cols""), metaTable.GetValue(""decimal_separator""), metaTable.GetValue(""thousand_separator""));
 }
 
 @functions {
-    string RemoveExtraText(string value, string decimalSeparator=""."")
+    string RemoveExtraText(string value, string decimalSeparator=""."", string thousandSeparator = "","")
     {
         var allowedChars = ""01234567890"" + decimalSeparator;
-        return new string(value.Where(c => allowedChars.Contains(c)).ToArray());
+        return new string(value.Where(c => allowedChars.Contains(c)).ToArray()).Replace(thousandSeparator,"""");
     }
 
-    DataTable ConvertHtmlTableToDataTable(IHtmlTableElement docTable, int headerRow = 0, int dataStartRow = 1, string numericCols = """", string decimalSeparator=""."")
+    DataTable ConvertHtmlTableToDataTable(IHtmlTableElement docTable, int headerRow = 0, int dataStartRow = 1, string numericCols = """", string decimalSeparator=""."", string thousandSeparator="","")
     {
         var table = new DataTable();
         var rowSpans = new int[0];
-        var numericColumns = new string[0];
+        var numericColumns = new List<string>();
         if (!string.IsNullOrEmpty(numericCols)) {
-            numericColumns = numericCols.Split("";"");
+            numericColumns = numericCols.Split("";"").ToList();
         }
 
         // Extract data from the table
@@ -66,7 +67,7 @@
                         var columnName = cell.TextContent.Trim();
                         if (string.IsNullOrEmpty(columnName)) columnName = ""Column"" + table.Columns.Count.ToString();
                         if (table.Columns.Contains(columnName)) columnName += table.Columns.Count.ToString();
-                        table.Columns.Add(columnName, numericColumns.Contains(columnName) ? typeof(double) : typeof(string));
+                        table.Columns.Add(columnName, numericColumns.Exists(i => columnName.StartsWith(i)) ? typeof(double) : typeof(string));
                     }
                 }
                 rowSpans = new int[table.Columns.Count];
@@ -94,9 +95,10 @@
                         rowSpans[i] = string.IsNullOrEmpty(rowspan) ? 1 : int.Parse(rowspan);
                         int colspanValue = string.IsNullOrEmpty(colspan) ? 1 : int.Parse(colspan);
 
+                        var columnName = table.Columns[i].ColumnName;
                         var value = cell.TextContent.Trim();
-                        if (numericColumns.Contains(table.Columns[i].ColumnName)) {
-                            value = RemoveExtraText(value, decimalSeparator);
+                        if (!string.IsNullOrEmpty(columnName) && numericColumns.Exists(i => columnName.StartsWith(i))) {
+                            value = RemoveExtraText(value, decimalSeparator, thousandSeparator);
                             if (!string.IsNullOrEmpty(value)) newRow[i] = double.Parse(value, CultureInfo.InvariantCulture);
                         }
                         else newRow[i] = value;

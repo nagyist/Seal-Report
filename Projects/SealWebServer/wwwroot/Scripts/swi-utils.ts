@@ -332,7 +332,7 @@ module SWIUtil {
             $outputPanel.hide();
             $("#profile-user").val(profile.name);
             $("#profile-groups").val(profile.group.replaceAll(";", "\r"));
-            SWIUtil.ShowHideControl($("#profile-change-password"), profile.editprofile && profile.changepassword);
+            SWIUtil.ShowHideControl($("#profile-change-password-option"), profile.editprofile && profile.changepassword);
 
             $waitDialog.modal('hide');
 

@@ -7,6 +7,8 @@ using System.Linq;
 using Seal.Model;
 using System.Windows.Forms;
 using Seal.Forms;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Seal.Helpers
 {
@@ -79,24 +81,25 @@ namespace Seal.Helpers
             }
         }
 
-        public static void SelectNode(TreeView mainTreeView, TreeNodeCollection nodes, object entity)
+        public static void SelectNode(TreeView treeView, TreeNodeCollection nodes, object entity)
         {
-            if (mainTreeView.SelectedNode != null && mainTreeView.SelectedNode.Tag == entity) return;
+            if (treeView.SelectedNode != null && treeView.SelectedNode.Tag == entity) return;
             
             foreach (TreeNode node in nodes)
             {
                 if (node.Tag == entity)
                 {
-                    mainTreeView.SelectedNode = node;
-                    mainTreeView.SelectedNode.Expand();
-                    mainTreeView.SelectedNode.EnsureVisible();
+                    treeView.SelectedNode = node;
+                    treeView.SelectedNode.Expand();
+                    treeView.SelectedNode.EnsureVisible();
+                    treeView.Focus();
                     break;
                 }
-                SelectNode(mainTreeView, node.Nodes, entity);
+                SelectNode(treeView, node.Nodes, entity);
             }
         }
 
-        public static TreeNode SelectCategoryNode(TreeView mainTreeView, TreeNodeCollection nodes, string path)
+        public static TreeNode SelectCategoryNode(TreeView treeView, TreeNodeCollection nodes, string path)
         {
             TreeNode result = null;
             foreach (TreeNode node in nodes)
@@ -104,27 +107,27 @@ namespace Seal.Helpers
                 if (node.Tag is CategoryFolder && ((CategoryFolder)node.Tag).Path == path)
                 {
                     result = node;
-                    mainTreeView.SelectedNode = node;
-                    mainTreeView.SelectedNode.Expand();
+                    treeView.SelectedNode = node;
+                    treeView.SelectedNode.Expand();
                     break;
                 }
-                if (result == null) SelectCategoryNode(mainTreeView, node.Nodes, path);
+                if (result == null) SelectCategoryNode(treeView, node.Nodes, path);
             }
             return result;
         }
 
 
-        public static void SelectNode(TreeView mainTreeView, TreeNodeCollection nodes, string fullPath)
+        public static void SelectNode(TreeView treeView, TreeNodeCollection nodes, string fullPath)
         {
             foreach (TreeNode node in nodes)
             {
                 if (node.FullPath == fullPath)
                 {
-                    mainTreeView.SelectedNode = node;
-                    mainTreeView.SelectedNode.Expand();
+                    treeView.SelectedNode = node;
+                    treeView.SelectedNode.Expand();
                     break;
                 }
-                SelectNode(mainTreeView, node.Nodes, fullPath);
+                SelectNode(treeView, node.Nodes, fullPath);
             }
         }
 
@@ -157,5 +160,70 @@ namespace Seal.Helpers
                 NodesFromEntity(node.Nodes, entity, result);
             }
         }
+
+        public static List<TreeNode> CloneNodes(TreeNodeCollection nodes)
+        {
+            var list = new List<TreeNode>();
+            foreach (TreeNode node in nodes)
+            {
+                list.Add((TreeNode)node.Clone());
+            }
+            return list;
+        }
+        public static void ApplyTreeViewFilter(TreeView tree, string filter, List<TreeNode> originalNodes)
+        {
+            object entityToSelect = tree.SelectedNode?.Tag;
+
+            tree.BeginUpdate();
+            tree.Nodes.Clear();
+
+            foreach (var node in originalNodes)
+            {
+                var filtered = FilterNode(node, filter);
+                if (filtered != null)
+                    tree.Nodes.Add(filtered);
+            }
+
+            tree.ExpandAll();
+            tree.EndUpdate();
+
+            if (entityToSelect != null) {
+                SelectNode(tree, tree.Nodes, entityToSelect);
+            }
+            else if (tree.Nodes.Count > 0)
+            {
+                TreeNode firstNode = tree.Nodes[0];
+                tree.SelectedNode = firstNode;
+                firstNode.EnsureVisible();
+            }
+        }
+
+        public static TreeNode FilterNode(TreeNode node, string filter)
+        {
+            // Clone node (without children yet)
+            TreeNode newNode = (TreeNode)node.Clone();
+            newNode.Nodes.Clear();
+
+            foreach (TreeNode child in node.Nodes)
+            {
+                var filteredChild = FilterNode(child, filter);
+                if (filteredChild != null)
+                    newNode.Nodes.Add(filteredChild);
+            }
+
+            // Match if node text matches OR any child matched
+            if (node.Text.IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0
+                || newNode.Nodes.Count > 0)
+            {
+                return newNode;
+            }
+
+            return null;
+        }
+
+        public const int EM_SETCUEBANNER = 0x1501;
+        List<TreeNode> _originalNodes;
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
     }
 }

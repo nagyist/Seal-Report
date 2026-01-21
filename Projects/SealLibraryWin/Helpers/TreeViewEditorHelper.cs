@@ -86,6 +86,10 @@ namespace Seal.Forms
             object tagX = tx.Tag;
             object tagY = ty.Tag;
 
+            //General at the top
+            if (tagX is Report) return -1;
+            else if (tagY is Report) return 1;
+
             // Priority sorting logic
             bool isCatX = tagX is CategoryFolder;
             bool isCatY = tagY is CategoryFolder;

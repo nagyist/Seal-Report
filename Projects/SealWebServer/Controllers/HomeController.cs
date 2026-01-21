@@ -412,7 +412,7 @@ namespace SealWebServer.Controllers
                                 progression_models_message = Helper.ToHtml(report.ExecutionProgressionModelsMessage),
                                 progression_tasks = report.ExecutionProgressionTasks,
                                 progression_tasks_message = Helper.ToHtml(report.ExecutionProgressionTasksMessage),
-                                execution_messages = report.ExecutionView.GetValue("messages_mode") != "disabled" ? Helper.ToHtml(report.ExecutionMessages) : null
+                                execution_messages = report.ExecutionView.GetValue("messages_mode") != "disabled" ? Helper.ToHtml(report.ExecutionMessagesToDisplay) : null
                             });
                         }
                         else

@@ -658,6 +658,18 @@ namespace Seal.Model
         public string ExecutionMessages;
 
         /// <summary>
+        /// Execution messages limited for display
+        /// </summary>
+        public string ExecutionMessagesToDisplay
+        {
+            get
+            {
+                var maxLen = 3000000; //3 millions of characters
+                return ExecutionMessages.Length > maxLen ? ExecutionMessages.Substring(ExecutionMessages.Length - maxLen, maxLen) : ExecutionMessages;
+            }
+        }
+
+        /// <summary>
         ///Execution errors after execution
         /// </summary>
         [XmlIgnore]

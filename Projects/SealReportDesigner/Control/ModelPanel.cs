@@ -12,6 +12,7 @@ using Seal.Forms;
 using DocumentFormat.OpenXml.Bibliography;
 using System.Linq;
 using Org.BouncyCastle.Asn1.IsisMtt.X509;
+using System.Runtime.InteropServices;
 
 namespace Seal.Controls
 {
@@ -25,6 +26,7 @@ namespace Seal.Controls
         ElementPanel RowPanel;
         ElementPanel DataPanel;
         List<ElementPanel> PanelList;
+        List<TreeNode> _originalNodes;
 
         public PropertyGrid ModelGrid = new PropertyGrid();
         public PropertyGrid ElementGrid = new PropertyGrid();
@@ -87,6 +89,23 @@ namespace Seal.Controls
 
             ElementGrid.SelectedObject = null;
             SelectedButton = null;
+
+            treeViewFilter.TextChanged += (sender, e) =>
+            {
+                if (string.IsNullOrEmpty(treeViewFilter.Text)) initTreeView();
+                else
+                {
+                    TreeViewHelper.ApplyTreeViewFilter(elementTreeView, treeViewFilter.Text, _originalNodes);
+                    treeViewFilter.Focus();
+                }
+            };
+
+            TreeViewHelper.SendMessage(treeViewFilter.Handle, TreeViewHelper.EM_SETCUEBANNER, 0, "Type to filter...");
+            buttonResetFilter.Click += (sender, e) =>
+            {
+                elementTreeView.Tag = "";
+                treeViewFilter.Text = "";
+            };
 
             initTreeView();
 
@@ -546,6 +565,7 @@ namespace Seal.Controls
         void initTreeView()
         {
             var tableList = Model.Source.MetaData.AllTables;
+            object entityToSelect = elementTreeView.SelectedNode?.Tag;
             if (Model.IsSQLModel)
             {
                 tableList = new List<MetaTable>();
@@ -567,9 +587,16 @@ namespace Seal.Controls
             finally
             {
                 elementTreeView.EndUpdate();
+                elementTreeView.CollapseAll();
                 elementTreeView.TreeViewNodeSorter = new NodeSorter();
+                if (entityToSelect != null)
+                {
+                    TreeViewHelper.SelectNode(elementTreeView, elementTreeView.Nodes, entityToSelect);
+                }
             }
             if (Model.IsSQLModel) elementTreeView.ExpandAll();
+
+            _originalNodes = TreeViewHelper.CloneNodes(elementTreeView.Nodes);
         }
 
         private void elementTreeView_ItemDrag(object sender, ItemDragEventArgs e)

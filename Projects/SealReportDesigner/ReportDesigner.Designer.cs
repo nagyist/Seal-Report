@@ -74,6 +74,8 @@
             renderViewOutputToolStripButton = new System.Windows.Forms.ToolStripButton();
             mainPanel = new System.Windows.Forms.Panel();
             mainSplitContainer = new System.Windows.Forms.SplitContainer();
+            treeViewFilter = new System.Windows.Forms.TextBox();
+            buttonResetFilter = new System.Windows.Forms.Button();
             mainTreeView = new System.Windows.Forms.TreeView();
             mainImageList = new System.Windows.Forms.ImageList(components);
             mainPropertyGrid = new System.Windows.Forms.PropertyGrid();
@@ -112,7 +114,7 @@
             newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N;
-            newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            newToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
@@ -122,14 +124,14 @@
             openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O;
-            openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            openToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             openToolStripMenuItem.Text = "Open (Last)";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // openRepositoryToolStripMenuItem
             // 
             openRepositoryToolStripMenuItem.Name = "openRepositoryToolStripMenuItem";
-            openRepositoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            openRepositoryToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             openRepositoryToolStripMenuItem.Text = "Open (Reports)";
             openRepositoryToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
@@ -137,7 +139,7 @@
             // 
             reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
             reloadToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R;
-            reloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            reloadToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             reloadToolStripMenuItem.Text = "Reload";
             reloadToolStripMenuItem.Click += reloadToolStripMenuItem_Click;
             // 
@@ -146,7 +148,7 @@
             saveToolStripMenuItem.Image = Properties.Resources.save;
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             saveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S;
-            saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            saveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
@@ -154,21 +156,21 @@
             // 
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             saveAsToolStripMenuItem.ShortcutKeyDisplayString = "";
-            saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            saveAsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             saveAsToolStripMenuItem.Text = "Save As...";
             saveAsToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // closeToolStripMenuItem
             // 
             closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            closeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             closeToolStripMenuItem.Text = "Close";
             closeToolStripMenuItem.Click += closeToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
             // 
             // executeToolStripMenuItem
             // 
@@ -176,7 +178,7 @@
             executeToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             executeToolStripMenuItem.Name = "executeToolStripMenuItem";
             executeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            executeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            executeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             executeToolStripMenuItem.Text = "Execute";
             executeToolStripMenuItem.Click += executeToolStripMenuItem_Click;
             // 
@@ -186,7 +188,7 @@
             renderToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             renderToolStripMenuItem.Name = "renderToolStripMenuItem";
             renderToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            renderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            renderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             renderToolStripMenuItem.Text = "Render";
             renderToolStripMenuItem.Click += executeToolStripMenuItem_Click;
             // 
@@ -196,7 +198,7 @@
             executeViewOutputToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             executeViewOutputToolStripMenuItem.Name = "executeViewOutputToolStripMenuItem";
             executeViewOutputToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            executeViewOutputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            executeViewOutputToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             executeViewOutputToolStripMenuItem.Text = "Execute View";
             executeViewOutputToolStripMenuItem.Click += executeToolStripMenuItem_Click;
             // 
@@ -206,32 +208,32 @@
             renderViewOutputToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             renderViewOutputToolStripMenuItem.Name = "renderViewOutputToolStripMenuItem";
             renderViewOutputToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            renderViewOutputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            renderViewOutputToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             renderViewOutputToolStripMenuItem.Text = "Render View";
             renderViewOutputToolStripMenuItem.Click += executeToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
             // 
             // MRUToolStripMenuItem
             // 
             MRUToolStripMenuItem.Name = "MRUToolStripMenuItem";
-            MRUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            MRUToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             MRUToolStripMenuItem.Text = "Recent Reports";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Image = Properties.Resources.exit;
             exitToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -263,7 +265,7 @@
             // toolsToolStripMenuItem
             // 
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             toolsToolStripMenuItem.Text = "Tools";
             // 
             // helpToolStripMenuItem
@@ -387,7 +389,7 @@
             executeToolStripButton.Image = Properties.Resources.execute;
             executeToolStripButton.ImageTransparentColor = System.Drawing.Color.White;
             executeToolStripButton.Name = "executeToolStripButton";
-            executeToolStripButton.Size = new System.Drawing.Size(68, 22);
+            executeToolStripButton.Size = new System.Drawing.Size(67, 22);
             executeToolStripButton.Text = "Execute";
             executeToolStripButton.ToolTipText = "F5 Execute the report";
             executeToolStripButton.Click += executeToolStripMenuItem_Click;
@@ -407,7 +409,7 @@
             executeViewOutputToolStripButton.Image = Properties.Resources.execute;
             executeViewOutputToolStripButton.ImageTransparentColor = System.Drawing.Color.White;
             executeViewOutputToolStripButton.Name = "executeViewOutputToolStripButton";
-            executeViewOutputToolStripButton.Size = new System.Drawing.Size(96, 22);
+            executeViewOutputToolStripButton.Size = new System.Drawing.Size(95, 22);
             executeViewOutputToolStripButton.Text = "Execute View";
             executeViewOutputToolStripButton.ToolTipText = "Execute the report using the selected view";
             executeViewOutputToolStripButton.Click += executeToolStripMenuItem_Click;
@@ -441,6 +443,8 @@
             // 
             // mainSplitContainer.Panel1
             // 
+            mainSplitContainer.Panel1.Controls.Add(treeViewFilter);
+            mainSplitContainer.Panel1.Controls.Add(buttonResetFilter);
             mainSplitContainer.Panel1.Controls.Add(mainTreeView);
             // 
             // mainSplitContainer.Panel2
@@ -451,20 +455,39 @@
             mainSplitContainer.SplitterWidth = 5;
             mainSplitContainer.TabIndex = 4;
             // 
+            // treeViewFilter
+            // 
+            treeViewFilter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            treeViewFilter.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            treeViewFilter.Location = new System.Drawing.Point(4, 5);
+            treeViewFilter.Name = "treeViewFilter";
+            treeViewFilter.Size = new System.Drawing.Size(183, 16);
+            treeViewFilter.TabIndex = 2;
+            // 
+            // buttonResetFilter
+            // 
+            buttonResetFilter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonResetFilter.FlatAppearance.BorderSize = 0;
+            buttonResetFilter.Location = new System.Drawing.Point(193, 2);
+            buttonResetFilter.Name = "buttonResetFilter";
+            buttonResetFilter.Size = new System.Drawing.Size(48, 24);
+            buttonResetFilter.TabIndex = 3;
+            buttonResetFilter.Text = "Reset";
+            // 
             // mainTreeView
             // 
             mainTreeView.AllowDrop = true;
+            mainTreeView.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             mainTreeView.ContextMenuStrip = treeContextMenuStrip;
-            mainTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             mainTreeView.HideSelection = false;
             mainTreeView.ImageIndex = 0;
             mainTreeView.ImageList = mainImageList;
             mainTreeView.LabelEdit = true;
-            mainTreeView.Location = new System.Drawing.Point(0, 0);
+            mainTreeView.Location = new System.Drawing.Point(4, 26);
             mainTreeView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             mainTreeView.Name = "mainTreeView";
             mainTreeView.SelectedImageIndex = 0;
-            mainTreeView.Size = new System.Drawing.Size(240, 732);
+            mainTreeView.Size = new System.Drawing.Size(236, 702);
             mainTreeView.TabIndex = 1;
             mainTreeView.BeforeLabelEdit += mainTreeView_BeforeLabelEdit;
             mainTreeView.AfterLabelEdit += mainTreeView_AfterLabelEdit;
@@ -550,6 +573,7 @@
             mainToolStrip.PerformLayout();
             mainPanel.ResumeLayout(false);
             mainSplitContainer.Panel1.ResumeLayout(false);
+            mainSplitContainer.Panel1.PerformLayout();
             mainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).EndInit();
             mainSplitContainer.ResumeLayout(false);
@@ -607,6 +631,8 @@
         private System.Windows.Forms.ToolStripMenuItem sortColumnSQLOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetDisplayOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openRepositoryToolStripMenuItem;
+        private System.Windows.Forms.TextBox treeViewFilter;
+        private System.Windows.Forms.Button buttonResetFilter;
     }
 }
 

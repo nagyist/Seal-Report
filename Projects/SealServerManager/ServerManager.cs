@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Threading;
 using DocumentFormat.OpenXml.InkML;
 using ScintillaNET;
+using System.Collections.Generic;
 
 namespace Seal
 {
@@ -31,6 +32,7 @@ namespace Seal
         ToolStripMenuItem securityMenuItem = new ToolStripMenuItem() { Text = "Configure Web Security...", ToolTipText = string.Format("Configure how the reports and folders are published on {0} Web Site", Repository.SealRootProductName) };
 
         MetaSource _source = null;
+        List<TreeNode> _originalNodes;
         public MetaSource Source
         {
             get { return _source; }
@@ -125,6 +127,18 @@ namespace Seal
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            treeViewFilter.TextChanged += (sender, e) =>
+            {
+                TreeViewHelper.ApplyTreeViewFilter(mainTreeView, treeViewFilter.Text, _originalNodes);
+                treeViewFilter.Focus();
+            };
+            TreeViewHelper.SendMessage(treeViewFilter.Handle, TreeViewHelper.EM_SETCUEBANNER, 0, "Type to filter...");
+            buttonResetFilter.Click += (sender, e) =>
+            {
+                treeViewFilter.Text = "";
+                init();
+            };
 
             //handle program args
             string[] args = Environment.GetCommandLineArgs();
@@ -345,17 +359,21 @@ namespace Seal
                     mainTreeView.SelectedNode = mainTN;
                 }
 
-                if (entityToSelect != null) selectNode(entityToSelect);
-                if (mainTreeView.SelectedNode == null && mainTreeView.Nodes.Count > 0) mainTreeView.SelectedNode = mainTreeView.Nodes[0];
                 toolsHelper.Source = _source;
 
-                mainTreeView.SelectedNode?.EnsureVisible();
                 enableControls();
             }
             finally
             {
                 mainTreeView.EndUpdate();
             }
+
+            _originalNodes = TreeViewHelper.CloneNodes(mainTreeView.Nodes);
+            if (!string.IsNullOrEmpty(treeViewFilter.Text)) TreeViewHelper.ApplyTreeViewFilter(mainTreeView, treeViewFilter.Text, _originalNodes);
+
+            if (entityToSelect != null) selectNode(entityToSelect);
+            if (mainTreeView.SelectedNode == null && mainTreeView.Nodes.Count > 0) mainTreeView.SelectedNode = mainTreeView.Nodes[0];
+            mainTreeView.SelectedNode?.EnsureVisible();
         }
 
         void enableControls()

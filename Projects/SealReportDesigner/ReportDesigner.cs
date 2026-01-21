@@ -37,6 +37,7 @@ namespace Seal
         ToolStripEditorHelper toolStripHelper;
         ToolsHelper toolsHelper;
         string lastEntityPath;
+        List<TreeNode> _originalNodes;
 
         Report _report = null;
         public Report Report
@@ -123,6 +124,18 @@ namespace Seal
 
             mainSplitContainer.Panel2.Controls.Add(modelPanel);
             modelPanel.Dock = DockStyle.Fill;
+
+            treeViewFilter.TextChanged += (sender, e) =>
+            {
+                TreeViewHelper.ApplyTreeViewFilter(mainTreeView, treeViewFilter.Text, _originalNodes);
+                treeViewFilter.Focus();
+            };
+            TreeViewHelper.SendMessage(treeViewFilter.Handle, TreeViewHelper.EM_SETCUEBANNER, 0, "Type to filter...");
+            buttonResetFilter.Click += (sender, e) =>
+            {
+                treeViewFilter.Text = "";
+                init();
+            };
 
             ShowIcon = true;
             Icon = Properties.Resources.reportDesigner;
@@ -266,8 +279,8 @@ namespace Seal
         {
             try
             {
-                mainTreeView.BeginUpdate();
                 if (entityToSelect == null && mainTreeView.SelectedNode != null) entityToSelect = mainTreeView.SelectedNode.Tag;
+                mainTreeView.BeginUpdate();
 
                 treeViewHelper.Report = _report;
                 if (_report == null)
@@ -351,7 +364,9 @@ namespace Seal
                         mainTreeView.SelectedNode = _sourceTN;
                     }
                 }
-                if (entityToSelect != null) selectNode(entityToSelect);
+
+                _originalNodes = TreeViewHelper.CloneNodes(mainTreeView.Nodes);
+                if (!string.IsNullOrEmpty(treeViewFilter.Text)) TreeViewHelper.ApplyTreeViewFilter(mainTreeView, treeViewFilter.Text, _originalNodes);
 
                 enableControls();
                 buildMRUMenus();
@@ -360,8 +375,7 @@ namespace Seal
             {
                 mainTreeView.EndUpdate();
                 mainTreeView.TreeViewNodeSorter = new NodeSorter();
-
-                if (mainTreeView.SelectedNode != null) mainTreeView.SelectedNode.EnsureVisible();
+                if (entityToSelect != null) selectNode(entityToSelect);
             }
         }
 
@@ -879,9 +893,12 @@ namespace Seal
             mainPropertyGrid.Visible = false;
 
             //refresh source
-            foreach (var source in _report.Sources)
+            if (_report != null)
             {
-                source.Refresh();
+                foreach (var source in _report.Sources)
+                {
+                    source.Refresh();
+                }
             }
 
             foreach (var node in _expandedValues)
@@ -1123,6 +1140,8 @@ namespace Seal
         {
             try
             {
+                if (_report == null) return;
+
                 Cursor.Current = Cursors.WaitCursor;
 
                 object entity = mainTreeView.SelectedNode.Tag;

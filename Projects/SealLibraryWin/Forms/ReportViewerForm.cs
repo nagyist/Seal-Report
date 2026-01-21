@@ -374,7 +374,7 @@ namespace Seal.Forms
                 {
                     if (Report.ExecutionView.GetValue("messages_mode") != "disabled")
                     {
-                        Container.setProperty(ReportExecution.HtmlId_execution_messages, "html", Helper.ToHtml(Report.ExecutionMessages));
+                        Container.setProperty(ReportExecution.HtmlId_execution_messages, "html", Helper.ToHtml(Report.ExecutionMessagesToDisplay));
                         Container.webBrowser.CoreWebView2.ExecuteScriptAsync("scrollMessages(false);");
                     }
                     Container.setProgressBarInformation(ReportExecution.HtmlId_progress_bar, Report.ExecutionProgression, Report.ExecutionProgressionMessage, "success");

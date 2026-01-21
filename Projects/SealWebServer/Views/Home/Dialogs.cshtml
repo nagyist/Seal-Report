@@ -237,7 +237,7 @@
                 </button>
                 <h4 class="modal-title">@repository.TranslateWeb("Profile information")</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="height:950px;width:800px;">
 
                 <div class="config-input-row">
                     <span class="config-input-label">@repository.TranslateWeb("User name")</span>
@@ -247,7 +247,7 @@
                     <span class="config-input-label">@repository.TranslateWeb("User groups")</span>
                     <textarea rows="3" class="form-control config-input-field" id="profile-groups" disabled="disabled"></textarea>
                 </div>
-                <div class="config-input-row">
+                <div id="profile-change-password-option" class="config-input-row">
                     <span class="config-input-label">@repository.TranslateWeb("Change password")</span>
                     <button id="profile-change-password" type="button" class="btn btn-default">@repository.TranslateWeb("Change password")</button>
                 </div>
@@ -258,6 +258,13 @@
                     <span class="config-input-label">@repository.TranslateWeb("Culture")</span>
                     <div class="config-input-field">
                         <select id="culture-select" data-width="100%"></select>
+                    </div>
+                </div>
+
+                <div class="config-input-row">
+                    <span class="config-input-label">@repository.TranslateWeb("Report execution mode")</span>
+                    <div class="config-input-field">
+                        <select id="executionmode-select" data-width="100%"></select>
                     </div>
                 </div>
 
@@ -274,14 +281,9 @@
                 </div>
 
                 <div class="config-input-row">
-                    <span class="config-input-label">@repository.TranslateWeb("Report execution mode")</span>
-                    <div class="config-input-field">
-                        <select id="executionmode-select" data-width="100%"></select>
-                    </div>
-                </div>
-
-                <div class="config-input-row">
                     <span class="config-input-label">@repository.TranslateWeb("Data source connections")</span>
+                </div>
+                <div class="config-input-row">
                     <div id="default-connections" class="config-input-field"></div>
                 </div>
             </div>
@@ -305,7 +307,7 @@
                 </button>
                 <h4 class="modal-title">@repository.TranslateWeb("Configuration and security")</h4>
             </div>
-            <div class="modal-body" style="height:900px;width:600px;">
+            <div class="modal-body" style="height:950px;width:800px;">
                 <div class="config-input-row">
                     <span class="config-input-label">@repository.TranslateWeb("Web product name")</span>
                     <input id="config-webproduct-name" type="text" class="form-control config-input-field" placeholder="@repository.TranslateWeb("Web product name")" />
@@ -318,7 +320,7 @@
 
                 <div id="detail-section-1">
                     <div class="tab-content">
-                        <div id="config-group-detail-content" class="tab-pane fade in active" style="height: 500px;">
+                        <div id="config-group-detail-content" class="tab-pane fade in active" style="height: 750px;">
                             <div class="config-groups-panel">
                                 <div class="config-input-row">
                                     <span class="config-input-label">@repository.TranslateWeb("Group name")</span>
@@ -396,7 +398,7 @@
                             </div>
                         </div>
 
-                        <div id="config-user-detail-content" class="tab-pane fade" style="height: 500px;">
+                        <div id="config-user-detail-content" class="tab-pane fade" style="height: 750px;">
                             <div class="config-logins-panel">
                                 <div class="config-input-row">
                                     <span class="config-input-label">@repository.TranslateWeb("Login ID")</span>

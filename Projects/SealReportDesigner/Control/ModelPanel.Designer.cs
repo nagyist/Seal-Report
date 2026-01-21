@@ -28,242 +28,287 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModelPanel));
-            this.modelSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.modelSourceSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.elementTreeView = new System.Windows.Forms.TreeView();
-            this.elementsSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.selectedElementsGroupBox = new System.Windows.Forms.GroupBox();
-            this.elementsContainer = new System.Windows.Forms.SplitContainer();
-            this.selectedRestrictionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.restrictionsContainer = new System.Windows.Forms.SplitContainer();
-            this.restrictionsSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.restrictionsPanel = new Seal.Controls.RestrictionsPanel();
-            this.aggregateRestrictionsPanel = new Seal.Controls.RestrictionsPanel();
-            this.mainImageList = new System.Windows.Forms.ImageList(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.modelSplitContainer)).BeginInit();
-            this.modelSplitContainer.Panel1.SuspendLayout();
-            this.modelSplitContainer.Panel2.SuspendLayout();
-            this.modelSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modelSourceSplitContainer)).BeginInit();
-            this.modelSourceSplitContainer.Panel2.SuspendLayout();
-            this.modelSourceSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.elementsSplitContainer)).BeginInit();
-            this.elementsSplitContainer.Panel1.SuspendLayout();
-            this.elementsSplitContainer.Panel2.SuspendLayout();
-            this.elementsSplitContainer.SuspendLayout();
-            this.selectedElementsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.elementsContainer)).BeginInit();
-            this.elementsContainer.SuspendLayout();
-            this.selectedRestrictionsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.restrictionsContainer)).BeginInit();
-            this.restrictionsContainer.Panel1.SuspendLayout();
-            this.restrictionsContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.restrictionsSplitContainer)).BeginInit();
-            this.restrictionsSplitContainer.Panel1.SuspendLayout();
-            this.restrictionsSplitContainer.Panel2.SuspendLayout();
-            this.restrictionsSplitContainer.SuspendLayout();
-            this.SuspendLayout();
+            modelSplitContainer = new System.Windows.Forms.SplitContainer();
+            modelSourceSplitContainer = new System.Windows.Forms.SplitContainer();
+            buttonResetFilter = new System.Windows.Forms.Button();
+            treeViewFilter = new System.Windows.Forms.TextBox();
+            elementTreeView = new System.Windows.Forms.TreeView();
+            mainImageList = new System.Windows.Forms.ImageList(components);
+            elementsSplitContainer = new System.Windows.Forms.SplitContainer();
+            selectedElementsGroupBox = new System.Windows.Forms.GroupBox();
+            elementsContainer = new System.Windows.Forms.SplitContainer();
+            selectedRestrictionsGroupBox = new System.Windows.Forms.GroupBox();
+            restrictionsContainer = new System.Windows.Forms.SplitContainer();
+            restrictionsSplitContainer = new System.Windows.Forms.SplitContainer();
+            restrictionsPanel = new RestrictionsPanel();
+            aggregateRestrictionsPanel = new RestrictionsPanel();
+            ((System.ComponentModel.ISupportInitialize)modelSplitContainer).BeginInit();
+            modelSplitContainer.Panel1.SuspendLayout();
+            modelSplitContainer.Panel2.SuspendLayout();
+            modelSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)modelSourceSplitContainer).BeginInit();
+            modelSourceSplitContainer.Panel2.SuspendLayout();
+            modelSourceSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)elementsSplitContainer).BeginInit();
+            elementsSplitContainer.Panel1.SuspendLayout();
+            elementsSplitContainer.Panel2.SuspendLayout();
+            elementsSplitContainer.SuspendLayout();
+            selectedElementsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)elementsContainer).BeginInit();
+            elementsContainer.SuspendLayout();
+            selectedRestrictionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)restrictionsContainer).BeginInit();
+            restrictionsContainer.Panel1.SuspendLayout();
+            restrictionsContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)restrictionsSplitContainer).BeginInit();
+            restrictionsSplitContainer.Panel1.SuspendLayout();
+            restrictionsSplitContainer.Panel2.SuspendLayout();
+            restrictionsSplitContainer.SuspendLayout();
+            SuspendLayout();
             // 
             // modelSplitContainer
             // 
-            this.modelSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.modelSplitContainer.Name = "modelSplitContainer";
+            modelSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            modelSplitContainer.Location = new System.Drawing.Point(0, 0);
+            modelSplitContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            modelSplitContainer.Name = "modelSplitContainer";
             // 
             // modelSplitContainer.Panel1
             // 
-            this.modelSplitContainer.Panel1.Controls.Add(this.modelSourceSplitContainer);
+            modelSplitContainer.Panel1.Controls.Add(modelSourceSplitContainer);
             // 
             // modelSplitContainer.Panel2
             // 
-            this.modelSplitContainer.Panel2.Controls.Add(this.elementsSplitContainer);
-            this.modelSplitContainer.Panel2.SizeChanged += new System.EventHandler(this.panel_Resize);
-            this.modelSplitContainer.Panel2.Resize += new System.EventHandler(this.panel_Resize);
-            this.modelSplitContainer.Size = new System.Drawing.Size(623, 497);
-            this.modelSplitContainer.SplitterDistance = 178;
-            this.modelSplitContainer.TabIndex = 0;
+            modelSplitContainer.Panel2.Controls.Add(elementsSplitContainer);
+            modelSplitContainer.Panel2.SizeChanged += panel_Resize;
+            modelSplitContainer.Panel2.Resize += panel_Resize;
+            modelSplitContainer.Size = new System.Drawing.Size(727, 573);
+            modelSplitContainer.SplitterDistance = 207;
+            modelSplitContainer.SplitterWidth = 5;
+            modelSplitContainer.TabIndex = 0;
             // 
             // modelSourceSplitContainer
             // 
-            this.modelSourceSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelSourceSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.modelSourceSplitContainer.Name = "modelSourceSplitContainer";
-            this.modelSourceSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            modelSourceSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            modelSourceSplitContainer.Location = new System.Drawing.Point(0, 0);
+            modelSourceSplitContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            modelSourceSplitContainer.Name = "modelSourceSplitContainer";
+            modelSourceSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // modelSourceSplitContainer.Panel2
             // 
-            this.modelSourceSplitContainer.Panel2.Controls.Add(this.elementTreeView);
-            this.modelSourceSplitContainer.Size = new System.Drawing.Size(178, 497);
-            this.modelSourceSplitContainer.SplitterDistance = 120;
-            this.modelSourceSplitContainer.TabIndex = 1;
+            modelSourceSplitContainer.Panel2.Controls.Add(buttonResetFilter);
+            modelSourceSplitContainer.Panel2.Controls.Add(treeViewFilter);
+            modelSourceSplitContainer.Panel2.Controls.Add(elementTreeView);
+            modelSourceSplitContainer.Size = new System.Drawing.Size(207, 573);
+            modelSourceSplitContainer.SplitterDistance = 138;
+            modelSourceSplitContainer.SplitterWidth = 5;
+            modelSourceSplitContainer.TabIndex = 1;
+            // 
+            // buttonResetFilter
+            // 
+            buttonResetFilter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonResetFilter.FlatAppearance.BorderSize = 0;
+            buttonResetFilter.Location = new System.Drawing.Point(160, 2);
+            buttonResetFilter.Name = "buttonResetFilter";
+            buttonResetFilter.Size = new System.Drawing.Size(48, 24);
+            buttonResetFilter.TabIndex = 4;
+            buttonResetFilter.Text = "Reset";
+            // 
+            // treeViewFilter
+            // 
+            treeViewFilter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            treeViewFilter.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            treeViewFilter.Location = new System.Drawing.Point(0, 5);
+            treeViewFilter.Name = "treeViewFilter";
+            treeViewFilter.Size = new System.Drawing.Size(152, 16);
+            treeViewFilter.TabIndex = 0;
             // 
             // elementTreeView
             // 
-            this.elementTreeView.AllowDrop = true;
-            this.elementTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementTreeView.ImageIndex = 0;
-            this.elementTreeView.ImageList = this.mainImageList;
-            this.elementTreeView.Location = new System.Drawing.Point(0, 0);
-            this.elementTreeView.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
-            this.elementTreeView.Name = "elementTreeView";
-            this.elementTreeView.SelectedImageIndex = 0;
-            this.elementTreeView.Size = new System.Drawing.Size(178, 400);
-            this.elementTreeView.TabIndex = 1;
-            this.elementTreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.elementTreeView_ItemDrag);
-            this.elementTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.elementTreeView_NodeMouseClick);
-            this.elementTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.elementTreeView_DragDrop);
-            this.elementTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.elementTreeView_DragEnter);
-            this.elementTreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.elementTreeView_DragOver);
-            this.elementTreeView.DoubleClick += new System.EventHandler(this.elementTreeView_DoubleClick);
-            this.elementTreeView.BeforeSelect += ElementTreeView_BeforeSelect;
-            // 
-            // elementsSplitContainer
-            // 
-            this.elementsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementsSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.elementsSplitContainer.Name = "elementsSplitContainer";
-            this.elementsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // elementsSplitContainer.Panel1
-            // 
-            this.elementsSplitContainer.Panel1.Controls.Add(this.selectedElementsGroupBox);
-            // 
-            // elementsSplitContainer.Panel2
-            // 
-            this.elementsSplitContainer.Panel2.Controls.Add(this.selectedRestrictionsGroupBox);
-            this.elementsSplitContainer.Size = new System.Drawing.Size(441, 497);
-            this.elementsSplitContainer.SplitterDistance = 248;
-            this.elementsSplitContainer.TabIndex = 2;
-            // 
-            // selectedElementsGroupBox
-            // 
-            this.selectedElementsGroupBox.Controls.Add(this.elementsContainer);
-            this.selectedElementsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedElementsGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.selectedElementsGroupBox.Name = "selectedElementsGroupBox";
-            this.selectedElementsGroupBox.Size = new System.Drawing.Size(441, 248);
-            this.selectedElementsGroupBox.TabIndex = 1;
-            this.selectedElementsGroupBox.TabStop = false;
-            this.selectedElementsGroupBox.Text = "Elements";
-            this.selectedElementsGroupBox.Resize += new System.EventHandler(this.panel_Resize);
-            // 
-            // elementsContainer
-            // 
-            this.elementsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementsContainer.Location = new System.Drawing.Point(3, 16);
-            this.elementsContainer.Name = "elementsContainer";
-            // 
-            // elementsContainer.Panel1
-            // 
-            this.elementsContainer.Panel1.Resize += new System.EventHandler(this.panel_Resize);
-            this.elementsContainer.Size = new System.Drawing.Size(435, 229);
-            this.elementsContainer.SplitterDistance = 285;
-            this.elementsContainer.TabIndex = 2;
-            // 
-            // selectedRestrictionsGroupBox
-            // 
-            this.selectedRestrictionsGroupBox.Controls.Add(this.restrictionsContainer);
-            this.selectedRestrictionsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedRestrictionsGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.selectedRestrictionsGroupBox.Name = "selectedRestrictionsGroupBox";
-            this.selectedRestrictionsGroupBox.Size = new System.Drawing.Size(441, 245);
-            this.selectedRestrictionsGroupBox.TabIndex = 2;
-            this.selectedRestrictionsGroupBox.TabStop = false;
-            this.selectedRestrictionsGroupBox.Text = "Restrictions and Aggregate Restrictions";
-            // 
-            // restrictionsContainer
-            // 
-            this.restrictionsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.restrictionsContainer.Location = new System.Drawing.Point(3, 16);
-            this.restrictionsContainer.Name = "restrictionsContainer";
-            // 
-            // restrictionsContainer.Panel1
-            // 
-            this.restrictionsContainer.Panel1.Controls.Add(this.restrictionsSplitContainer);
-            this.restrictionsContainer.Size = new System.Drawing.Size(435, 226);
-            this.restrictionsContainer.SplitterDistance = 283;
-            this.restrictionsContainer.TabIndex = 3;
-            // 
-            // restrictionsSplitContainer
-            // 
-            this.restrictionsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.restrictionsSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.restrictionsSplitContainer.Name = "restrictionsSplitContainer";
-            this.restrictionsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // restrictionsSplitContainer.Panel1
-            // 
-            this.restrictionsSplitContainer.Panel1.Controls.Add(this.restrictionsPanel);
-            // 
-            // restrictionsSplitContainer.Panel2
-            // 
-            this.restrictionsSplitContainer.Panel2.Controls.Add(this.aggregateRestrictionsPanel);
-            this.restrictionsSplitContainer.Size = new System.Drawing.Size(283, 226);
-            this.restrictionsSplitContainer.SplitterDistance = 164;
-            this.restrictionsSplitContainer.TabIndex = 2;
-            // 
-            // restrictionsPanel
-            // 
-            this.restrictionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.restrictionsPanel.Location = new System.Drawing.Point(0, 0);
-            this.restrictionsPanel.Name = "restrictionsPanel";
-            this.restrictionsPanel.Size = new System.Drawing.Size(283, 164);
-            this.restrictionsPanel.TabIndex = 2;
-            // 
-            // aggregateRestrictionsPanel
-            // 
-            this.aggregateRestrictionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aggregateRestrictionsPanel.Location = new System.Drawing.Point(0, 0);
-            this.aggregateRestrictionsPanel.Name = "aggregateRestrictionsPanel";
-            this.aggregateRestrictionsPanel.Size = new System.Drawing.Size(283, 58);
-            this.aggregateRestrictionsPanel.TabIndex = 3;
+            elementTreeView.AllowDrop = true;
+            elementTreeView.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            elementTreeView.HideSelection = false;
+            elementTreeView.ImageIndex = 0;
+            elementTreeView.ImageList = mainImageList;
+            elementTreeView.Location = new System.Drawing.Point(0, 26);
+            elementTreeView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            elementTreeView.Name = "elementTreeView";
+            elementTreeView.SelectedImageIndex = 0;
+            elementTreeView.Size = new System.Drawing.Size(208, 401);
+            elementTreeView.TabIndex = 1;
+            elementTreeView.ItemDrag += elementTreeView_ItemDrag;
+            elementTreeView.BeforeSelect += ElementTreeView_BeforeSelect;
+            elementTreeView.NodeMouseClick += elementTreeView_NodeMouseClick;
+            elementTreeView.DragDrop += elementTreeView_DragDrop;
+            elementTreeView.DragEnter += elementTreeView_DragEnter;
+            elementTreeView.DragOver += elementTreeView_DragOver;
+            elementTreeView.DoubleClick += elementTreeView_DoubleClick;
             // 
             // mainImageList
             // 
-            this.mainImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("mainImageList.ImageStream")));
-            this.mainImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.mainImageList.Images.SetKeyName(0, "database.png");
-            this.mainImageList.Images.SetKeyName(1, "connection.png");
-            this.mainImageList.Images.SetKeyName(2, "folder.png");
-            this.mainImageList.Images.SetKeyName(3, "label.png");
-            this.mainImageList.Images.SetKeyName(4, "table.png");
-            this.mainImageList.Images.SetKeyName(5, "join.png");
-            this.mainImageList.Images.SetKeyName(6, "enum.png");
-            this.mainImageList.Images.SetKeyName(7, "element.png");
+            mainImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            mainImageList.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("mainImageList.ImageStream");
+            mainImageList.TransparentColor = System.Drawing.Color.Transparent;
+            mainImageList.Images.SetKeyName(0, "database.png");
+            mainImageList.Images.SetKeyName(1, "connection.png");
+            mainImageList.Images.SetKeyName(2, "folder.png");
+            mainImageList.Images.SetKeyName(3, "label.png");
+            mainImageList.Images.SetKeyName(4, "table.png");
+            mainImageList.Images.SetKeyName(5, "join.png");
+            mainImageList.Images.SetKeyName(6, "enum.png");
+            mainImageList.Images.SetKeyName(7, "element.png");
+            // 
+            // elementsSplitContainer
+            // 
+            elementsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            elementsSplitContainer.Location = new System.Drawing.Point(0, 0);
+            elementsSplitContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            elementsSplitContainer.Name = "elementsSplitContainer";
+            elementsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // elementsSplitContainer.Panel1
+            // 
+            elementsSplitContainer.Panel1.Controls.Add(selectedElementsGroupBox);
+            // 
+            // elementsSplitContainer.Panel2
+            // 
+            elementsSplitContainer.Panel2.Controls.Add(selectedRestrictionsGroupBox);
+            elementsSplitContainer.Size = new System.Drawing.Size(515, 573);
+            elementsSplitContainer.SplitterDistance = 285;
+            elementsSplitContainer.SplitterWidth = 5;
+            elementsSplitContainer.TabIndex = 2;
+            // 
+            // selectedElementsGroupBox
+            // 
+            selectedElementsGroupBox.Controls.Add(elementsContainer);
+            selectedElementsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            selectedElementsGroupBox.Location = new System.Drawing.Point(0, 0);
+            selectedElementsGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            selectedElementsGroupBox.Name = "selectedElementsGroupBox";
+            selectedElementsGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            selectedElementsGroupBox.Size = new System.Drawing.Size(515, 285);
+            selectedElementsGroupBox.TabIndex = 1;
+            selectedElementsGroupBox.TabStop = false;
+            selectedElementsGroupBox.Text = "Elements";
+            selectedElementsGroupBox.Resize += panel_Resize;
+            // 
+            // elementsContainer
+            // 
+            elementsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            elementsContainer.Location = new System.Drawing.Point(4, 19);
+            elementsContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            elementsContainer.Name = "elementsContainer";
+            // 
+            // elementsContainer.Panel1
+            // 
+            elementsContainer.Panel1.Resize += panel_Resize;
+            elementsContainer.Size = new System.Drawing.Size(507, 263);
+            elementsContainer.SplitterDistance = 332;
+            elementsContainer.SplitterWidth = 5;
+            elementsContainer.TabIndex = 2;
+            // 
+            // selectedRestrictionsGroupBox
+            // 
+            selectedRestrictionsGroupBox.Controls.Add(restrictionsContainer);
+            selectedRestrictionsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            selectedRestrictionsGroupBox.Location = new System.Drawing.Point(0, 0);
+            selectedRestrictionsGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            selectedRestrictionsGroupBox.Name = "selectedRestrictionsGroupBox";
+            selectedRestrictionsGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            selectedRestrictionsGroupBox.Size = new System.Drawing.Size(515, 283);
+            selectedRestrictionsGroupBox.TabIndex = 2;
+            selectedRestrictionsGroupBox.TabStop = false;
+            selectedRestrictionsGroupBox.Text = "Restrictions and Aggregate Restrictions";
+            // 
+            // restrictionsContainer
+            // 
+            restrictionsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            restrictionsContainer.Location = new System.Drawing.Point(4, 19);
+            restrictionsContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            restrictionsContainer.Name = "restrictionsContainer";
+            // 
+            // restrictionsContainer.Panel1
+            // 
+            restrictionsContainer.Panel1.Controls.Add(restrictionsSplitContainer);
+            restrictionsContainer.Size = new System.Drawing.Size(507, 261);
+            restrictionsContainer.SplitterDistance = 329;
+            restrictionsContainer.SplitterWidth = 5;
+            restrictionsContainer.TabIndex = 3;
+            // 
+            // restrictionsSplitContainer
+            // 
+            restrictionsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            restrictionsSplitContainer.Location = new System.Drawing.Point(0, 0);
+            restrictionsSplitContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            restrictionsSplitContainer.Name = "restrictionsSplitContainer";
+            restrictionsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // restrictionsSplitContainer.Panel1
+            // 
+            restrictionsSplitContainer.Panel1.Controls.Add(restrictionsPanel);
+            // 
+            // restrictionsSplitContainer.Panel2
+            // 
+            restrictionsSplitContainer.Panel2.Controls.Add(aggregateRestrictionsPanel);
+            restrictionsSplitContainer.Size = new System.Drawing.Size(329, 261);
+            restrictionsSplitContainer.SplitterDistance = 189;
+            restrictionsSplitContainer.SplitterWidth = 5;
+            restrictionsSplitContainer.TabIndex = 2;
+            // 
+            // restrictionsPanel
+            // 
+            restrictionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            restrictionsPanel.Location = new System.Drawing.Point(0, 0);
+            restrictionsPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            restrictionsPanel.Name = "restrictionsPanel";
+            restrictionsPanel.Size = new System.Drawing.Size(329, 189);
+            restrictionsPanel.TabIndex = 2;
+            // 
+            // aggregateRestrictionsPanel
+            // 
+            aggregateRestrictionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            aggregateRestrictionsPanel.Location = new System.Drawing.Point(0, 0);
+            aggregateRestrictionsPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            aggregateRestrictionsPanel.Name = "aggregateRestrictionsPanel";
+            aggregateRestrictionsPanel.Size = new System.Drawing.Size(329, 67);
+            aggregateRestrictionsPanel.TabIndex = 3;
             // 
             // ModelPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.modelSplitContainer);
-            this.Name = "ModelPanel";
-            this.Size = new System.Drawing.Size(623, 497);
-            this.ClientSizeChanged += new System.EventHandler(this.panel_Resize);
-            this.modelSplitContainer.Panel1.ResumeLayout(false);
-            this.modelSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.modelSplitContainer)).EndInit();
-            this.modelSplitContainer.ResumeLayout(false);
-            this.modelSourceSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.modelSourceSplitContainer)).EndInit();
-            this.modelSourceSplitContainer.ResumeLayout(false);
-            this.elementsSplitContainer.Panel1.ResumeLayout(false);
-            this.elementsSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.elementsSplitContainer)).EndInit();
-            this.elementsSplitContainer.ResumeLayout(false);
-            this.selectedElementsGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.elementsContainer)).EndInit();
-            this.elementsContainer.ResumeLayout(false);
-            this.selectedRestrictionsGroupBox.ResumeLayout(false);
-            this.restrictionsContainer.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.restrictionsContainer)).EndInit();
-            this.restrictionsContainer.ResumeLayout(false);
-            this.restrictionsSplitContainer.Panel1.ResumeLayout(false);
-            this.restrictionsSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.restrictionsSplitContainer)).EndInit();
-            this.restrictionsSplitContainer.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(modelSplitContainer);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "ModelPanel";
+            Size = new System.Drawing.Size(727, 573);
+            ClientSizeChanged += panel_Resize;
+            modelSplitContainer.Panel1.ResumeLayout(false);
+            modelSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)modelSplitContainer).EndInit();
+            modelSplitContainer.ResumeLayout(false);
+            modelSourceSplitContainer.Panel2.ResumeLayout(false);
+            modelSourceSplitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)modelSourceSplitContainer).EndInit();
+            modelSourceSplitContainer.ResumeLayout(false);
+            elementsSplitContainer.Panel1.ResumeLayout(false);
+            elementsSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)elementsSplitContainer).EndInit();
+            elementsSplitContainer.ResumeLayout(false);
+            selectedElementsGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)elementsContainer).EndInit();
+            elementsContainer.ResumeLayout(false);
+            selectedRestrictionsGroupBox.ResumeLayout(false);
+            restrictionsContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)restrictionsContainer).EndInit();
+            restrictionsContainer.ResumeLayout(false);
+            restrictionsSplitContainer.Panel1.ResumeLayout(false);
+            restrictionsSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)restrictionsSplitContainer).EndInit();
+            restrictionsSplitContainer.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -281,5 +326,8 @@
         private System.Windows.Forms.SplitContainer modelSourceSplitContainer;
         private System.Windows.Forms.TreeView elementTreeView;
         private System.Windows.Forms.ImageList mainImageList;
+        private System.Windows.Forms.TextBox treeViewFilter
+            ;
+        private System.Windows.Forms.Button buttonResetFilter;
     }
 }
